@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>WebRTC Robot </title>
+    <link type="text/css" href="/style.css" rel="stylesheet"></link>
+
+    <script src="/webrtc.io.js"></script>
+  </head>
+  <body onload="init()">
+      <div id="container">
+          <div id="videos">
+              <video id="you" autoplay></video>
+          </div>
+          <div id="chatbox">
+              <div id="messages"></div>
+              <input id="chatinput" type="text" placeholder="Message:"/>
+          </div>
+          <div class="buttonBox">
+              <div id="hideShowMessages" class="button">Chat Off</div>
+              <div id="fullscreen" class="button">Full</div>
+              <div id="newRoom" class="button">New</div>
+          </div>
+      </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
