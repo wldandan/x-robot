@@ -8,7 +8,6 @@ The robot can be used in different scenarios, like property inspections remotely
    * Speed Up
    * Show Video        
  
-
 - android-app  
   The android's app receives command from consumer and send command to robot.
    * Share video with consumer
@@ -24,8 +23,16 @@ The robot can be used in different scenarios, like property inspections remotely
 
 ===================================
 
+### Debug webrtc
+Open chrome browser and input "chrome://chrome://webrtc-internals/"
+
+
+===================================
 
 ###Install Stun Server  
-By default, webrtc uses google stun servers which are not stable, so we need to install a new stun server by ourselves.
+The default stun servers are not stable, so we can install a new stun server.
 
-Please install [stunserver](https://github.com/jselbie/stunserver)
+Please follow the following instructions:
+
+https://github.com/jselbie/stunserver
+
