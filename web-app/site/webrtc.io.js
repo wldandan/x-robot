@@ -84,6 +84,7 @@ if (navigator.webkitGetUserMedia) {
     }
     return {
       "iceServers": [
+          {"url": "stun:198.74.48.54"},
           {"url": "stun:23.21.150.121"},
           {"url": "stun:stun.l.google.com:19302"},
           {
