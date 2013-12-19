@@ -34,6 +34,42 @@ app.get('/webrtc.io.js', function(req, res) {
   res.sendfile(__dirname + '/webrtc.io.js');
 });
 
+app.get('/css/style.css', function(req, res) {
+  res.sendfile(__dirname + '/css/style.css');
+});
+
+app.get('/css/demo.css', function(req, res) {
+  res.sendfile(__dirname + '/css/demo.css');
+});
+
+app.get('/css/font-awesome.css', function(req, res) {
+  res.sendfile(__dirname + '/css/font-awesome.css');
+});
+
+app.get('/font/fontawesome-webfont.woff', function(req, res) {
+  res.sendfile(__dirname + '/font/fontawesome-webfont.woff');
+});
+
+app.get('/font/fontawesome-webfont.svg', function(req, res) {
+  res.sendfile(__dirname + '/font/fontawesome-webfont.svg');
+});
+
+app.get('/font/fontawesome-webfont.eot', function(req, res) {
+  res.sendfile(__dirname + '/font/fontawesome-webfont.eot');
+});
+
+app.get('/font/fontawesome-webfont.ttf', function(req, res) {
+  res.sendfile(__dirname + '/font/fontawesome-webfont.ttf');
+});
+
+app.get('/css/normalize.css', function(req, res) {
+  res.sendfile(__dirname + '/css/normalize.css');
+});
+
+app.get('/images/bg.jpg', function(req, res) {
+  res.sendfile(__dirname + '/images/bg.jpg');
+});
+
 webRTC.rtc.on('chat_msg', function(data, socket) {
   var roomList = webRTC.rtc.rooms[data.room] || [];
 

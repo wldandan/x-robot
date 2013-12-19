@@ -1,7 +1,9 @@
 <html>
   <head>
     <title>WebRTC Robot </title>
-    <link type="text/css" href="/style.css" rel="stylesheet"></link>    
+    <link type="text/css" href="/style.css" rel="stylesheet"></link>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css"/>
   </head>
   <body onload="init()">
       <div id="container">
@@ -11,6 +13,14 @@
           <div id="chatbox">
               <div id="messages"></div>
               <input id="chatinput" type="text" placeholder="Message:"/>
+              <div class="container">
+                <section class="main">
+                  <div class="switch demo4">
+                  <input type="checkbox">
+                  <label><i class='icon-off'></i></label>
+                  </div>
+                </section>
+              </div>
           </div>
           <div class="buttonBox">
               <div id="hideShowMessages" class="button">Chat Off</div>
