@@ -12,22 +12,35 @@ function recieveKeyboardMessageFromServer(){
 	});
 }
 
-document.addEventListener("keyup", function(event){
-    if (event.keyCode == 87){
-        sentKeyboardMessageToServer("w");
-    }
-    else if (event.keyCode == 83){
-        sentKeyboardMessageToServer("s");
-    }
-    else if (event.keyCode == 65){
-        sentKeyboardMessageToServer("a");
-    }
-    else if (event.keyCode == 68){
-        sentKeyboardMessageToServer("d");
-    }
-    else{
-        console.log("please send actions 'w','s','a','d' to other device.")
-    }
-}, false);
-    
+function startRemoteControl(){
+    $("body").bind('keyup', function(event){
+        if (event.keyCode == 87){
+            sentKeyboardMessageToServer("w");
+        }
+        else if (event.keyCode == 83){
+            sentKeyboardMessageToServer("s");
+        }
+        else if (event.keyCode == 65){
+            sentKeyboardMessageToServer("a");
+        }
+        else if (event.keyCode == 68){
+            sentKeyboardMessageToServer("d");
+        }
+        else{
+            console.log("please send actions 'w','s','a','d' to other device.")
+        }
+    });
+}
+
+function bindSwitchButton(){
+    $(".main input[type='checkbox']").click(function() {
+        if(this.checked){
+            startRemoteControl();
+        }else{
+            $("body").unbind('keyup');
+        }
+    });
+}
+
+bindSwitchButton();
 recieveKeyboardMessageFromServer();
