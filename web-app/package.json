@@ -1,5 +1,5 @@
 {
-  "name": "MultiWebRTC",
+  "name": "X-robot-WebRTC",
   "description": "Example of multi user webrtc",
   "version": "0.0.2-1",
   "engines": {
@@ -10,12 +10,15 @@
     "webrtc.io-client": "latest",
     "express": "3.1.0",
     "ws": "latest",
-    "socket.io": "latest",
-    "karma": "latest"
+    "socket.io": "latest"
   },
-  "subdomain": "MultiWebRTC",
+  "subdomain": "X-robot-WebRTC",
   "scripts": {
-    "start": "example/server.js"
+    "start": "site/server.js",
+    "test": "./node_modules/karma/bin/karma start --single-run --browsers Chrome"
+  },
+  "devDependencies": {
+    "karma": "latest"
   },
   "author": "Ben Brittain",
   "contributors": [
