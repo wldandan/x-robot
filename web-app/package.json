@@ -10,7 +10,8 @@
     "webrtc.io-client": "latest",
     "express": "3.1.0",
     "ws": "latest",
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "karma": "latest"
   },
   "subdomain": "MultiWebRTC",
   "scripts": {

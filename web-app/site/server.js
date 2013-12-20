@@ -27,15 +27,15 @@ app.get('/remote-control.js', function(req, res) {
 });
 
 app.get('/socket.io.js', function(req, res) {
-  res.sendfile(__dirname + '/js/socket.io.js');
+  res.sendfile(__dirname + '/js/lib/socket.io.js');
 });
 
 app.get('/webrtc.io.js', function(req, res) {
-  res.sendfile(__dirname + '/js/webrtc.io.js');
+  res.sendfile(__dirname + '/js/lib/webrtc.io.js');
 });
 
 app.get('/jquery.js', function(req, res) {
-  res.sendfile(__dirname + '/js/jquery-1.10.1.js');
+  res.sendfile(__dirname + '/js/lib/jquery-1.10.1.js');
 });
 
 app.get('/switch-style.css', function(req, res) {
