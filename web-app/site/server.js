@@ -11,38 +11,42 @@ app.get('/', function(req, res) {
 });
 
 app.get('/style.css', function(req, res) {
-  res.sendfile(__dirname + '/style.css');
-});
-
-app.get('/fullscrean.png', function(req, res) {
-  res.sendfile(__dirname + '/fullscrean.png');
-});
-
-app.get('/script.js', function(req, res) {
-  res.sendfile(__dirname + '/script.js');
-});
-
-app.get('/remote-control.js', function(req, res) {
-  res.sendfile(__dirname + '/remote-control.js');
-});
-
-app.get('/socket.io.js', function(req, res) {
-  res.sendfile(__dirname + '/socket.io.js');
-});
-
-app.get('/webrtc.io.js', function(req, res) {
-  res.sendfile(__dirname + '/webrtc.io.js');
-});
-
-app.get('/css/style.css', function(req, res) {
   res.sendfile(__dirname + '/css/style.css');
 });
 
-app.get('/css/demo.css', function(req, res) {
+app.get('/fullscrean.png', function(req, res) {
+  res.sendfile(__dirname + '/images/fullscrean.png');
+});
+
+app.get('/script.js', function(req, res) {
+  res.sendfile(__dirname + '/js/script.js');
+});
+
+app.get('/remote-control.js', function(req, res) {
+  res.sendfile(__dirname + '/js/remote-control.js');
+});
+
+app.get('/socket.io.js', function(req, res) {
+  res.sendfile(__dirname + '/js/socket.io.js');
+});
+
+app.get('/webrtc.io.js', function(req, res) {
+  res.sendfile(__dirname + '/js/webrtc.io.js');
+});
+
+app.get('/jquery.js', function(req, res) {
+  res.sendfile(__dirname + '/js/jquery-1.10.1.js');
+});
+
+app.get('/switch-style.css', function(req, res) {
+  res.sendfile(__dirname + '/css/switch-style.css');
+});
+
+app.get('/demo.css', function(req, res) {
   res.sendfile(__dirname + '/css/demo.css');
 });
 
-app.get('/css/font-awesome.css', function(req, res) {
+app.get('/font-awesome.css', function(req, res) {
   res.sendfile(__dirname + '/css/font-awesome.css');
 });
 
@@ -62,7 +66,7 @@ app.get('/font/fontawesome-webfont.ttf', function(req, res) {
   res.sendfile(__dirname + '/font/fontawesome-webfont.ttf');
 });
 
-app.get('/css/normalize.css', function(req, res) {
+app.get('/normalize.css', function(req, res) {
   res.sendfile(__dirname + '/css/normalize.css');
 });
 
