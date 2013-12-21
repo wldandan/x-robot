@@ -14,7 +14,7 @@
   },
   "subdomain": "X-robot-WebRTC",
   "scripts": {
-    "start": "site/server.js",
+    "start": "node site/server.js",
     "test": "./node_modules/karma/bin/karma start --single-run --browsers Chrome"
   },
   "devDependencies": {
