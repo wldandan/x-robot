@@ -28,6 +28,8 @@
     
     <uses-sdk android:minSdkVersion="14"
               android:targetSdkVersion="16"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- This package contains an application...  The 'label' is the name
          to display to the user for the overall application, and provides
          a default label for all following components.  The syntax here is a

@@ -18,10 +18,19 @@ package lbs.xrobot;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.koushikdutta.async.http.socketio.SocketIOClient;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+import lbs.xrobot.handler.ServerConnectCallback;
 
 /**
  * This class provides a basic demonstration of how to write an Android
@@ -29,7 +38,7 @@ import android.widget.ToggleButton;
  * displays and edits some internal text.
  */
 public class XRobotActivity extends Activity {
-
+    public static String TAG = "X_ROBOT_ACTIVITY";
     private ToggleButton startBtn;
     private EditText serverAddressEditor;
     private EditText leftSpeedPinEditor;
@@ -92,7 +101,8 @@ public class XRobotActivity extends Activity {
     }
 
     private void connectServer() {
-        Toast.makeText(getBaseContext(), "Server Connected: " + serverAddress, Toast.LENGTH_SHORT).show();
+        ServerConnectCallback serverConnectCallback = new ServerConnectCallback(this);
+        SocketIOClient.connect(serverAddress, serverConnectCallback ,new Handler());
     }
 
     private void updateConfiguration() {
