@@ -1,2 +1,5 @@
 web-app/node_modules/
 .idea
+out
+gen
+*.iml
