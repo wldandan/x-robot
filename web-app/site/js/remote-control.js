@@ -1,4 +1,5 @@
-var socket = io.connect('http://127.0.0.1:9081/');
+var socket = io.connect('http://127.0.0.1:9081/'),
+    allowed = true;
 
 function sentKeyboardMessageToServer(KeyboardMessage){
 	socket.emit('keyboard message from client event',{action: KeyboardMessage})
@@ -13,7 +14,9 @@ function recieveKeyboardMessageFromServer(){
 }
 
 function startRemoteControl(){
-    $("body").bind('keyup', function(event){
+    $("body").bind('keydown', function(event){
+        if (!allowed) return;
+        allowed = false;
         if (event.keyCode == 87){
             sentKeyboardMessageToServer("w");
         }
@@ -27,7 +30,26 @@ function startRemoteControl(){
             sentKeyboardMessageToServer("d");
         }
         else{
-            console.log("please send actions 'w','s','a','d' to other device.")
+            console.log("please send actions 'w','s','a','d','h' to other device.")
+        }
+    });
+
+    $("body").bind('keyup', function(event){
+        allowed = true;
+        if (event.keyCode == 87){
+            sentKeyboardMessageToServer("h");
+        }
+        else if (event.keyCode == 83){
+            sentKeyboardMessageToServer("h");
+        }
+        else if (event.keyCode == 65){
+            sentKeyboardMessageToServer("h");
+        }
+        else if (event.keyCode == 68){
+            sentKeyboardMessageToServer("h");
+        }
+        else{
+            console.log("please send actions 'w','s','a','d','h' to other device.")
         }
     });
 }
