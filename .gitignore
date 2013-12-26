@@ -3,3 +3,9 @@ web-app/node_modules/
 out
 gen
 *.iml
+.DS_Store
+**/.DS_Store
+**/.idea
+**/build
+**/gen
+**/.gradle
