@@ -8,12 +8,10 @@ import com.koushikdutta.async.http.socketio.Acknowledge;
 import com.koushikdutta.async.http.socketio.ConnectCallback;
 import com.koushikdutta.async.http.socketio.DisconnectCallback;
 import com.koushikdutta.async.http.socketio.ErrorCallback;
-import com.koushikdutta.async.http.socketio.EventCallback;
 import com.koushikdutta.async.http.socketio.JSONCallback;
 import com.koushikdutta.async.http.socketio.SocketIOClient;
 import com.koushikdutta.async.http.socketio.StringCallback;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.PrintWriter;
@@ -21,16 +19,22 @@ import java.io.StringWriter;
 
 import lbs.xrobot.XRobotActivity;
 
-public class ServerConnectCallback implements ConnectCallback, DisconnectCallback, ErrorCallback, JSONCallback, StringCallback, EventCallback {
+public class ServerConnectCallback implements ConnectCallback, DisconnectCallback, ErrorCallback, JSONCallback, StringCallback {
     private Activity activity;
+    private ArduinoCommandCallback arduinoCommandCallback;
     private SocketIOClient client;
 
-    public ServerConnectCallback(Activity activity) {
+    public ServerConnectCallback(Activity activity, ArduinoCommandCallback arduinoCommandCallback) {
         this.activity = activity;
+        this.arduinoCommandCallback = arduinoCommandCallback;
     }
 
     public SocketIOClient getClient() {
         return client;
+    }
+
+    public void disconnect(){
+        client.disconnect();
     }
 
     @Override
@@ -44,14 +48,13 @@ public class ServerConnectCallback implements ConnectCallback, DisconnectCallbac
             ex.printStackTrace();
             return;
         }
-        Toast.makeText(activity.getBaseContext(), "Server connected", Toast.LENGTH_SHORT).show();
 
         client.setDisconnectCallback(this);
         client.setErrorCallback(this);
         client.setJSONCallback(this);
         client.setStringCallback(this);
 
-        client.addListener("keyboard message to other client event", this);
+        client.addListener("keyboard message to other client event", arduinoCommandCallback);
 
     }
 
@@ -76,10 +79,5 @@ public class ServerConnectCallback implements ConnectCallback, DisconnectCallbac
     public void onString(String string, Acknowledge acknowledge) {
         Toast.makeText(activity.getBaseContext(), "string: " + string, Toast.LENGTH_SHORT).show();
 
-    }
-
-    @Override
-    public void onEvent(String event, JSONArray argument, Acknowledge acknowledge) {
-        Toast.makeText(activity.getBaseContext(), "event: " + event, Toast.LENGTH_SHORT).show();
     }
 }

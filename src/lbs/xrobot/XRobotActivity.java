@@ -17,9 +17,9 @@
 package lbs.xrobot;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,9 +27,10 @@ import android.widget.ToggleButton;
 
 import com.koushikdutta.async.http.socketio.SocketIOClient;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.IOException;
 
+import lbs.xrobot.handler.ArduinoCommandCallback;
+import lbs.xrobot.handler.ArduinoController;
 import lbs.xrobot.handler.ServerConnectCallback;
 
 /**
@@ -48,12 +49,15 @@ public class XRobotActivity extends Activity {
     private EditText rightFrontPinEditor;
     private EditText rightBackPinEditor;
     private String serverAddress;
-    private String leftSpeedPin;
-    private String leftFrontPin;
-    private String leftBackPin;
-    private String rightSpeedPin;
-    private String rightFrontPin;
-    private String rightBackPin;
+    private int leftSpeedPin;
+    private int leftFrontPin;
+    private int leftBackPin;
+    private int rightSpeedPin;
+    private int rightFrontPin;
+    private int rightBackPin;
+    private BroadcastReceiver mReceiver;
+    private ArduinoController arduinoController;
+    private ServerConnectCallback serverConnectCallback;
 
     public XRobotActivity() {
     }
@@ -65,8 +69,13 @@ public class XRobotActivity extends Activity {
 
         // Inflate our UI from its XML layout description.
         setContentView(R.layout.xrobot_activity);
-        initializeControls();
+        initialize();
         bind();
+    }
+
+    private void initialize() {
+        arduinoController = new ArduinoController(this);
+        initializeControls();
     }
 
     private void bind() {
@@ -77,44 +86,62 @@ public class XRobotActivity extends Activity {
                     updateConfiguration();
                     connect();
                 }else{
+                    disconnectAll();
                     Toast.makeText(getBaseContext(), "Disconnected all", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    private void connect() {
-        connectServer();
-        connectArduino();
+    private void disconnectAll() {
+        serverConnectCallback.disconnect();
+        arduinoController.disconnect();
     }
 
-    private void connectArduino() {
+    private void connect() {
+        try {
+            connectServer(connectArduino());
+        } catch (Exception e) {
+            Toast.makeText(getBaseContext(), "Fail to connect arduino: " + e, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private ArduinoCommandCallback connectArduino() throws Exception {
         StringBuilder sb = new StringBuilder();
         sb.append("Arduino Connected: ").append("\n");
-        sb.append("ea:").append(leftSpeedPin).append("\n");
-        sb.append("i1:").append(leftFrontPin).append("\n");
-        sb.append("i2:").append(leftBackPin).append("\n");
-        sb.append("eb:").append(rightSpeedPin).append("\n");
-        sb.append("i3:").append(rightFrontPin).append("\n");
-        sb.append("i4:").append(rightBackPin).append("\n");
-        Toast.makeText(getBaseContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+        sb.append("ea:").append(leftSpeedPin).append(" ");
+        sb.append("i1:").append(leftFrontPin).append(" ");
+        sb.append("i2:").append(leftBackPin).append(" ");
+        sb.append("eb:").append(rightSpeedPin).append(" ");
+        sb.append("i3:").append(rightFrontPin).append(" ");
+        sb.append("i4:").append(rightBackPin).append(" ");
+
+        try {
+            arduinoController.connect(leftSpeedPin, leftFrontPin, leftBackPin, rightSpeedPin, rightFrontPin, rightBackPin);
+            Toast.makeText(getBaseContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+            return new ArduinoCommandCallback(this, arduinoController);
+        } catch (IOException e) {
+            throw new Exception("Connect arduino failed", e);
+        } catch (InterruptedException e) {
+            throw new Exception("Connect arduino failed", e);
+        }
     }
 
-    private void connectServer() {
-        ServerConnectCallback serverConnectCallback = new ServerConnectCallback(this);
-        SocketIOClient.connect(serverAddress, serverConnectCallback ,new Handler());
+    private void connectServer(ArduinoCommandCallback arduinoCommandCallback) {
+        serverConnectCallback = new ServerConnectCallback(this, arduinoCommandCallback);
+        SocketIOClient.connect(serverAddress, serverConnectCallback,new Handler());
     }
 
     private void updateConfiguration() {
         serverAddress = serverAddressEditor.getText().toString();
 
-        leftSpeedPin = leftSpeedPinEditor.getText().toString();
-        leftFrontPin = leftFrontPinEditor.getText().toString();
-        leftBackPin = leftBackPinEditor.getText().toString();
+        leftSpeedPin = Integer.parseInt(leftSpeedPinEditor.getText().toString());
+        leftFrontPin = Integer.parseInt(leftFrontPinEditor.getText().toString());
+        leftBackPin = Integer.parseInt(leftBackPinEditor.getText().toString());
 
-        rightSpeedPin = rightSpeedPinEditor.getText().toString();
-        rightFrontPin = rightFrontPinEditor.getText().toString();
-        rightBackPin = rightBackPinEditor.getText().toString();
+        rightSpeedPin = Integer.parseInt(rightSpeedPinEditor.getText().toString());
+        rightFrontPin = Integer.parseInt(rightFrontPinEditor.getText().toString());
+        rightBackPin = Integer.parseInt(rightBackPinEditor.getText().toString());
     }
 
     private void initializeControls() {
