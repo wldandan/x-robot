@@ -24,7 +24,7 @@
      own application, the package name must be changed from "com.example.*"
      to come from a domain that you own or have control over. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.skeletonapp">
+    package="lbs.xrobot">
     
     <uses-sdk android:minSdkVersion="14"
               android:targetSdkVersion="16"/>
@@ -38,12 +38,12 @@
              can launch and interact with.  The "name" attribute is the
              name of the class within your package that implements this
              activity. -->
-        <activity android:name="SkeletonActivity">
+        <activity android:name=".XRobotActivity">
 
             <!-- An IntentFilter tells the system when it should use your
                  activity.  This allows the user to get to your activity
                  without someone having to explicitly know to launch your
-                 class "com.examplel.android.skeletonapp.SkeletonActivity". -->
+                 class "com.examplel.android.xrobot.XRobotActivity". -->
             <intent-filter>
                 <!-- The MAIN action describes a main entry point into an
                      activity, without any associated data. -->

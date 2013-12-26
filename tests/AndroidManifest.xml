@@ -15,7 +15,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-      package="com.example.android.skeletonapp.tests">
+      package="com.example.android.xrobot.tests">
     
     <!-- We add an application tag here just so that we can indicate that
          this package needs to link against the android.test library,
@@ -25,7 +25,7 @@
     </application>
 
   <instrumentation android:name="android.test.InstrumentationTestRunner"
-      android:targetPackage="com.example.android.skeletonapp"
+      android:targetPackage="com.example.android.xrobot"
       android:label="SkeletonApp sample tests">
   </instrumentation>  
   

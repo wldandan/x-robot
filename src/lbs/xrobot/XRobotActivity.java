@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.skeletonapp;
+package lbs.xrobot;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ import android.widget.ToggleButton;
  * activity. Inside of its window, it places a single view: an EditText that
  * displays and edits some internal text.
  */
-public class SkeletonActivity extends Activity {
+public class XRobotActivity extends Activity {
 
     private ToggleButton startBtn;
     private EditText serverAddressEditor;
@@ -46,7 +46,7 @@ public class SkeletonActivity extends Activity {
     private String rightFrontPin;
     private String rightBackPin;
 
-    public SkeletonActivity() {
+    public XRobotActivity() {
     }
 
     /** Called with the activity is first created. */
@@ -55,7 +55,7 @@ public class SkeletonActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // Inflate our UI from its XML layout description.
-        setContentView(R.layout.skeleton_activity);
+        setContentView(R.layout.xrobot_activity);
         initializeControls();
         bind();
     }
