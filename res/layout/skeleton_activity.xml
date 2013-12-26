@@ -79,6 +79,7 @@
               android:layout_height="wrap_content"
               android:paddingLeft="15dp"
               android:columnCount="4"
+              android:inputType="numberDecimal"
               android:rowCount="3">
 
         <TextView
@@ -90,6 +91,7 @@
                 android:id="@+id/ea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:text="11"/>
 
         <TextView
@@ -101,6 +103,7 @@
                 android:id="@+id/eb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:text="3"/>
 
         <TextView
@@ -112,6 +115,7 @@
                 android:id="@+id/i1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:text="12"/>
 
         <TextView
@@ -123,6 +127,7 @@
                 android:id="@+id/i3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:text="2"/>
 
         <TextView
@@ -134,6 +139,7 @@
                 android:id="@+id/i2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:text="13"/>
 
         <TextView
@@ -145,14 +151,17 @@
                 android:id="@+id/i4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:text="4"/>
 
     </GridLayout>
 
-    <Button
+    <ToggleButton
+            android:id="@+id/start"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="start"
+            android:textOff="Disconnected"
+            android:textOn="Connected"
             />
 </LinearLayout>
 
