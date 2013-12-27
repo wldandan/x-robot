@@ -9,3 +9,5 @@ gen
 **/build
 **/gen
 **/.gradle
+*.ipr
+*.iws
