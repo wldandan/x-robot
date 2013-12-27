@@ -6,13 +6,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:0.4'
     }
 }
-apply plugin: 'android'
-apply plugin: 'idea'
 
-dependencies {
-        compile fileTree(dir: 'libs/', includes: ['**.jar'])
-        compile project(':libraries:websocket')
-}
+apply plugin: 'android-library'
 
 android {
     compileSdkVersion 17
@@ -32,21 +27,11 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
-      }        
+        }
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.6'
+task jar(type: Jar) {
+    from android.sourceSets.main
 }
 
-idea {
-    module{
-        sourceDirs += file('src')
-        sourceDirs += file('gen')
-
-        excludeDirs += file('.gradle')
-        excludeDirs += file('out')
-        excludeDirs += file('build')
-    }
-}

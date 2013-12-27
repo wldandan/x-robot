@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="/Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/res" />
+        <source path="/Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/build/res/rs/release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="/Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/release/res" />
+    </dataSet>
+
+</merger>

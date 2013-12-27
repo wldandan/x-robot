@@ -1,0 +1,18 @@
+# incremental data. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1388130569000 15897 dfc1e3cac1b7ae969e0191576c3dc51e911abadb /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/SocketIOConnection.java
+1388130569000 2972 a7253a2b08c3f037552e527aa8dadb0509744af9 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/http/AsyncHttpClient.java
+1388130569000 181 ee040decce1219b4068d711e59bb86fcd0f3a174 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/JSONCallback.java
+1388130569000 193 d756c94585b7295b001632aeab908deb05a89f55 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/EventCallback.java
+1388130569000 116 a989c76817f81efb302243be37e6c47086745b53 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/ReconnectCallback.java
+1388130569000 14099 e1eb6fe9e967951fee74add49b1ed7dfe8f7c4bd /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/codebutler/android_websockets/HybiParser.java
+1388130569000 1584 021e042090450ef3a357b1327bf12b6266b07471 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/EventEmitter.java
+1388130569000 9934 94537baee90f27a18c42c42c6e102b708e1bf2da /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/codebutler/android_websockets/WebSocketClient.java
+1388130569000 156 35ba33990e06f4946a2e9103a55975000e330096 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/ConnectCallback.java
+1388130569000 162 6ebd1adb41180336bd49c066ebcad74a19473aa3 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/DisconnectCallback.java
+1388130569000 153 fbf549ffc53f80950f852a8e61c2320e4b100f95 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/ErrorCallback.java
+1388130569000 148 75be3ace3365bb070c96e79da566d8de66939af7 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/StringCallback.java
+1388130569000 151 6719ae422034f506efd50fd23d7932da2a34117d /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/Acknowledge.java
+1388130569000 5319 9c34b2020f75bc02eaf31dceb540efcb90ee5cc8 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/http/socketio/SocketIOClient.java
+1388130569000 643 f5d26323f9c945fc4c23ea68b3ffa566d9d666a3 /Users/twer/Work/projects/lbs/x-robot/android-app/libraries/websocket/src/com/koushikdutta/async/util/HashList.java

@@ -1,0 +1,3 @@
+include(':libraries:websocket')
+project(':libraries:websocket').projectDir = new File(settingsDir, 'libraries/websocket')
+
