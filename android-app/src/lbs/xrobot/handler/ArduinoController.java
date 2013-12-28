@@ -18,6 +18,12 @@ public class ArduinoController {
 
     private boolean isConnected;
 
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    private int speed = 100;
+
     public ArduinoController(Activity activity) {
         this.arduino = new ArduinoFirmata(activity);
     }
@@ -74,25 +80,25 @@ public class ArduinoController {
     }
 
     public void leftSideForward() {
-        arduino.analogWrite(ea, 100);
+        arduino.analogWrite(ea, speed);
         arduino.digitalWrite(i1, true);
         arduino.digitalWrite(i2, false);
     }
 
     public void leftSideBackward() {
-        arduino.analogWrite(ea, 100);
+        arduino.analogWrite(ea, speed);
         arduino.digitalWrite(i1, false);
         arduino.digitalWrite(i2, true);
     }
 
     public void rightSideForward() {
-        arduino.analogWrite(eb, 100);
+        arduino.analogWrite(eb, speed);
         arduino.digitalWrite(i3, true);
         arduino.digitalWrite(i4, false);
     }
 
     public void rightSideBackward() {
-        arduino.analogWrite(eb, 100);
+        arduino.analogWrite(eb, speed);
         arduino.digitalWrite(i3, false);
         arduino.digitalWrite(i4, true);
     }
