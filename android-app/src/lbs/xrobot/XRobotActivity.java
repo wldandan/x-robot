@@ -17,8 +17,10 @@
 package lbs.xrobot;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -60,6 +62,7 @@ public class XRobotActivity extends Activity {
     private int rightBackPin;
     private ArduinoController arduinoController;
     private ServerConnectCallback serverConnectCallback;
+    private PowerManager.WakeLock mWakeLock;
 
     public XRobotActivity() {
     }
@@ -71,6 +74,9 @@ public class XRobotActivity extends Activity {
 
         // Inflate our UI from its XML layout description.
         setContentView(R.layout.xrobot_activity);
+        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag");
+        this.mWakeLock.acquire();
         initialize();
         bind();
     }
@@ -165,4 +171,9 @@ public class XRobotActivity extends Activity {
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        this.mWakeLock.release();
+        super.onDestroy();
+    }
 }

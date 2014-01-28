@@ -64,13 +64,13 @@ public class ArduinoController {
     }
 
     public void turnLeft(){
-        leftSideBackward();
-        rightSideForward();
+        leftSideForward();
+        rightSideBackward();
     }
 
     public void turnRight(){
-        leftSideForward();
-        rightSideBackward();
+        leftSideBackward();
+        rightSideForward();
     }
 
 
