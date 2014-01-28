@@ -40,7 +40,7 @@ public class ArduinoController {
         this.eb = eb;
         this.i3 = i3;
         this.i4 = i4;
-        arduino.connect();
+//        arduino.connect();
         isConnected = true;
     }
 

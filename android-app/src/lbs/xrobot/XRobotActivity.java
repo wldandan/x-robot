@@ -27,10 +27,13 @@ import android.widget.ToggleButton;
 
 import com.koushikdutta.async.http.socketio.SocketIOClient;
 
+import org.webrtc.PeerConnectionFactory;
+
 import java.io.IOException;
 
 import lbs.xrobot.handler.ArduinoCommandCallback;
 import lbs.xrobot.handler.ArduinoController;
+import lbs.xrobot.handler.RTCClient;
 import lbs.xrobot.handler.ServerConnectCallback;
 
 /**
@@ -57,6 +60,7 @@ public class XRobotActivity extends Activity {
     private int rightBackPin;
     private ArduinoController arduinoController;
     private ServerConnectCallback serverConnectCallback;
+    private RTCClient rtcClient;
     private SeekBar speedBar;
 
     public XRobotActivity() {
@@ -117,7 +121,7 @@ public class XRobotActivity extends Activity {
 
     private void connect() {
         try {
-            connectServer(connectArduino());
+            connectServer(connectArduino(), new RTCClient(this));
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Fail to connect arduino: " + e, Toast.LENGTH_SHORT).show();
         }
@@ -144,8 +148,8 @@ public class XRobotActivity extends Activity {
         }
     }
 
-    private void connectServer(ArduinoCommandCallback arduinoCommandCallback) {
-        serverConnectCallback = new ServerConnectCallback(this, arduinoCommandCallback);
+    private void connectServer(ArduinoCommandCallback arduinoCommandCallback , RTCClient rtcClient) {
+        serverConnectCallback = new ServerConnectCallback(this, arduinoCommandCallback, rtcClient);
         SocketIOClient.connect(serverAddress, serverConnectCallback,new Handler());
     }
 

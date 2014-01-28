@@ -12,6 +12,8 @@ import com.koushikdutta.async.http.socketio.JSONCallback;
 import com.koushikdutta.async.http.socketio.SocketIOClient;
 import com.koushikdutta.async.http.socketio.StringCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.PrintWriter;
@@ -19,18 +21,16 @@ import java.io.StringWriter;
 
 import lbs.xrobot.XRobotActivity;
 
-public class ServerConnectCallback implements ConnectCallback, DisconnectCallback, ErrorCallback, JSONCallback, StringCallback {
+public class ServerConnectCallback implements ConnectCallback, DisconnectCallback{
     private Activity activity;
     private ArduinoCommandCallback arduinoCommandCallback;
+    private RTCClient rtcClient;
     private SocketIOClient client;
 
-    public ServerConnectCallback(Activity activity, ArduinoCommandCallback arduinoCommandCallback) {
+    public ServerConnectCallback(Activity activity, ArduinoCommandCallback arduinoCommandCallback, RTCClient rtcClient) {
         this.activity = activity;
         this.arduinoCommandCallback = arduinoCommandCallback;
-    }
-
-    public SocketIOClient getClient() {
-        return client;
+        this.rtcClient = rtcClient;
     }
 
     public void disconnect(){
@@ -50,34 +50,19 @@ public class ServerConnectCallback implements ConnectCallback, DisconnectCallbac
         }
 
         client.setDisconnectCallback(this);
-        client.setErrorCallback(this);
-        client.setJSONCallback(this);
-        client.setStringCallback(this);
 
         client.addListener("keyboard message to other client event", arduinoCommandCallback);
+
+        rtcClient.initialize(client);
+        JSONArray arguments = new JSONArray();
+        arguments.put("x-robot");
+        client.emit("readyToStream", arguments);
+        client.addListener("message", rtcClient);
 
     }
 
     @Override
     public void onDisconnect(Exception e) {
         Toast.makeText(activity.getBaseContext(), "disconnected: " + e, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onError(String error) {
-        Toast.makeText(activity.getBaseContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onJSON(JSONObject json, Acknowledge acknowledge) {
-        Toast.makeText(activity.getBaseContext(), "json: " + json, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onString(String string, Acknowledge acknowledge) {
-        Toast.makeText(activity.getBaseContext(), "string: " + string, Toast.LENGTH_SHORT).show();
-
     }
 }
