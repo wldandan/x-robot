@@ -60,8 +60,6 @@ public class XRobotActivity extends Activity {
     private int rightBackPin;
     private ArduinoController arduinoController;
     private ServerConnectCallback serverConnectCallback;
-    private RTCClient rtcClient;
-    private SeekBar speedBar;
 
     public XRobotActivity() {
     }
@@ -93,23 +91,6 @@ public class XRobotActivity extends Activity {
                     disconnectAll();
                     Toast.makeText(getBaseContext(), "Disconnected all", Toast.LENGTH_LONG).show();
                 }
-            }
-        });
-
-        speedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                arduinoController.setSpeed(i);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(getBaseContext(), "Current Speed: " + seekBar.getProgress(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -174,7 +155,6 @@ public class XRobotActivity extends Activity {
         rightSpeedPinEditor = (EditText)findViewById(R.id.eb);
         rightFrontPinEditor = (EditText)findViewById(R.id.i3);
         rightBackPinEditor = (EditText)findViewById(R.id.i4);
-        speedBar = (SeekBar) findViewById(R.id.speed);
     }
 
     /**
