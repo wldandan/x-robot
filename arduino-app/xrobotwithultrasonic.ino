@@ -1,16 +1,18 @@
-#include <TimerOne.h>
-
 char val; // variable to receive data from the serial port
-int ea = 9; // LED connected to pin 48 (on-board LED)
-int i1 = 12; // LED connected to pin 48 (on-board LED)
-int i2 = 11; // LED connected to pin 48 (on-board LED)
+const int ea = 9; // LED connected to pin 48 (on-board LED)
+const int i1 = 12; // LED connected to pin 48 (on-board LED)
+const int i2 = 11; // LED connected to pin 48 (on-board LED)
 
-int eb = 10; // LED connected to pin 48 (on-board LED)
-int i3 = 9; // LED connected to pin 48 (on-board LED)
-int i4 = 8; // LED connected to pin 48 (on-board LED)
+const int eb = 10; // LED connected to pin 48 (on-board LED)
+const int i3 = 9; // LED connected to pin 48 (on-board LED)
+const int i4 = 8; // LED connected to pin 48 (on-board LED)
+const int trigPin = 7;
+const int echoPin = 6;
 
-void setup() 
-{
+float temp;
+int tempPin = 0;
+
+void setup() {
   pinMode(ea, OUTPUT);  // pin 48 (on-board LED) as OUTPUT
   pinMode(eb, OUTPUT);  // pin 48 (on-board LED) as OUTPUT
   pinMode(i1, OUTPUT);  // pin 48 (on-board LED) as OUTPUT
@@ -18,12 +20,30 @@ void setup()
   pinMode(i3, OUTPUT);  // pin 48 (on-board LED) as OUTPUT
   pinMode(i4, OUTPUT);  // pin 48 (on-board LED) as OUTPUT
 
-  Timer1.initialize(100000); // set a timer of length 100000 microseconds (or 0.1 sec - or 10Hz => the led will blink 5 times, 5 cycles of on-and-off, per second)
-  Timer1.attachInterrupt(timerIsr); // attach the service routine here
-  Serial.begin(9600);       // start serial communication at 9600bps  
+  Serial.begin(9600);       // start serial communication at 9600bps
 }
+void loop() {
 
-void timerIsr(){
+  long duration, cm;
+  pinMode(trigPin, OUTPUT);
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  pinMode(echoPin, INPUT);
+  duration = pulseIn(echoPin, HIGH);
+
+  cm = microsecondsToCentimeters(duration);
+
+  temp = analogRead(tempPin);
+  temp = temp * 0.48828125;
+
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
+  Serial.println(temp);	
+
   if ( Serial.available() )      // if data is available to read
   {
     val = Serial.read();         // read it and store it in 'val'
@@ -37,11 +57,8 @@ void timerIsr(){
     left();
   } else if( val == 'd') {
     right();
-  }  
-}
-
-void loop() {
-  //it can be empty with timer to do things for just add the code to the timerIsr()
+  }
+  delay(100);                    // wait 100ms for next reading
 }
 
 void forward() {
@@ -89,4 +106,8 @@ void stopEngine() {
   digitalWrite(i2, LOW);
   digitalWrite(i3, LOW);
   digitalWrite(i4, LOW);
+}
+long microsecondsToCentimeters(long microseconds)
+{
+  return microseconds / 29 / 2;
 }
