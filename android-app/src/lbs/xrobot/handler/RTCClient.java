@@ -59,6 +59,7 @@ public class RTCClient implements EventCallback {
 
     private void setupIceServer() {
         iceServers.add(new PeerConnection.IceServer("stun:23.21.150.121"));
+        iceServers.add(new PeerConnection.IceServer("stun:176.58.114.68:3478"));
         iceServers.add(new PeerConnection.IceServer("stun:stun.l.google.com:19302"));
 
         // factory cannot be initialized before AndroidGlobals

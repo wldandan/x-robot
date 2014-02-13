@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="http://10.29.2.72:3000"/>
+                    android:text="http://176.58.114.68:3000"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -73,6 +73,8 @@
             android:padding="5dp"
             android:text="Arduino pins number:"/>
 
+
+
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/gridview"
               android:layout_width="fill_parent"
@@ -81,6 +83,7 @@
               android:columnCount="4"
               android:inputType="numberDecimal"
               android:rowCount="3">
+
 
         <TextView
                 android:layout_width="wrap_content"
@@ -156,6 +159,7 @@
 
     </GridLayout>
 
+
     <ToggleButton
             android:id="@+id/start"
             android:layout_width="fill_parent"
@@ -163,6 +167,15 @@
             android:textOff="Disconnected"
             android:textOn="Connected"
             />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cartooneyes"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        />
+
 </LinearLayout>
-
-

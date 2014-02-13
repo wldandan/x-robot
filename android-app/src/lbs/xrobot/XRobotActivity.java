@@ -21,22 +21,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.Toast;
-import android.widget.ToggleButton;
-
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.*;
 import com.koushikdutta.async.http.socketio.SocketIOClient;
-
-import org.webrtc.PeerConnectionFactory;
-
-import java.io.IOException;
-
 import lbs.xrobot.handler.ArduinoCommandCallback;
 import lbs.xrobot.handler.ArduinoController;
 import lbs.xrobot.handler.RTCClient;
 import lbs.xrobot.handler.ServerConnectCallback;
+
+import java.io.IOException;
 
 /**
  * This class provides a basic demonstration of how to write an Android
@@ -126,6 +120,7 @@ public class XRobotActivity extends Activity {
 
         try {
             arduinoController.connect(leftSpeedPin, leftFrontPin, leftBackPin, rightSpeedPin, rightFrontPin, rightBackPin);
+            displayFunnyEyes();
             Toast.makeText(getBaseContext(), sb.toString(), Toast.LENGTH_SHORT).show();
             return new ArduinoCommandCallback(this, arduinoController);
         } catch (IOException e) {
@@ -133,6 +128,21 @@ public class XRobotActivity extends Activity {
         } catch (InterruptedException e) {
             throw new Exception("Connect arduino failed", e);
         }
+    }
+
+    private void displayFunnyEyes() {
+        TextView arduinoTitle=(TextView)findViewById(R.id.arduinoTitle);
+        arduinoTitle.setVisibility(View.GONE);
+        TextView serverTitle=(TextView)findViewById(R.id.serverTitle);
+        serverTitle.setVisibility(View.GONE);
+        EditText serverAddress = (EditText)findViewById(R.id.serverAddress);
+        serverAddress.setVisibility(View.GONE);
+        ViewGroup viewGroup=(GridLayout)findViewById(R.id.gridview);
+        viewGroup.removeAllViews();
+        ToggleButton toggleButton=(ToggleButton)findViewById(R.id.start);
+        toggleButton.setVisibility(View.GONE);
+        ImageView img=(ImageView)findViewById(R.id.imageView1);
+        img.setVisibility(View.VISIBLE);
     }
 
     private void connectServer(ArduinoCommandCallback arduinoCommandCallback , RTCClient rtcClient) {
